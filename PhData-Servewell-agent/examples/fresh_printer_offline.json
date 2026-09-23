@@ -1,0 +1,21 @@
+{
+  "ticket_id": "INC-NEW-001",
+  "store_id": "SW-0001",
+  "store_name": "ServeWell - Banjara Hills",
+  "submitted_by": "Ananya Rao",
+  "contact_phone": "+91-90000-11111",
+  "date_opened": "2026-06-02T12:20:00+05:30",
+  "priority": "P3",
+  "category": "Printers",
+  "subcategory": "Printer Offline",
+  "subject": "Receipt printer shows offline at counter 1",
+  "description": "The receipt printer at counter 1 (PRN-0001-P1) went offline about 20 minutes ago during the lunch rush. POS shows 'Printer offline' when we try to print a bill. It is connected by USB cable and the power light is on. We have not tried anything yet.",
+  "asset_id": "PRN-0001-P1",
+  "system_version": "EpsonTM-T88VI v1.12",
+  "tags": ["printer", "offline"],
+  "escalation_flag": false,
+  "related_tickets": [],
+  "ticket_history": [],
+  "resolution_notes": null,
+  "status": "Open"
+}

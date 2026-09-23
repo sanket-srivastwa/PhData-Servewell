@@ -1,0 +1,320 @@
+{
+  "heldout": {
+    "n_test": 66,
+    "n_train": 154,
+    "routing_accuracy": 0.803030303030303,
+    "baseline_accuracy": 0.7727272727272727,
+    "l2_recall": 0.8974358974358975,
+    "l2_missed_to_l1": 0.10256410256410256,
+    "false_escalation_rate": 0.3333333333333333,
+    "l1_recall": 0.6666666666666666,
+    "primary_runbook_hit": 0.9393939393939394,
+    "any_runbook_at3": 0.9848484848484849,
+    "doc_recall_at5": 0.8541125541125542,
+    "all_steps_grounded": 1.0,
+    "human_review_rate": 0.3333333333333333,
+    "message_policy_pass": 1.0,
+    "avg_latency_ms": 3.621212121212121,
+    "kb_gap_tickets": 0.3939393939393939,
+    "review_reasons": {
+      "P1: human confirms before customer-facing send / L2 page": 9,
+      "low confidence": 14
+    },
+    "confusion": {
+      "l2_escalation->l2_escalation": 35,
+      "l1_guided->l2_escalation": 9,
+      "l1_guided->l1_guided": 18,
+      "l2_escalation->l1_guided": 4
+    },
+    "acc_high_conf": 0.9459459459459459,
+    "acc_low_conf": 0.6206896551724138,
+    "n_high_conf": 37,
+    "n_low_conf": 29,
+    "wrong": [
+      [
+        "INC-00040",
+        "l1_guided",
+        "l2_escalation",
+        0.65
+      ],
+      [
+        "INC-00117",
+        "l1_guided",
+        "l2_escalation",
+        0.49
+      ],
+      [
+        "INC-00266",
+        "l2_escalation",
+        "l1_guided",
+        0.85
+      ],
+      [
+        "INC-00100",
+        "l1_guided",
+        "l2_escalation",
+        0.5
+      ],
+      [
+        "INC-00245",
+        "l2_escalation",
+        "l1_guided",
+        0.86
+      ],
+      [
+        "INC-00060",
+        "l1_guided",
+        "l2_escalation",
+        0.66
+      ],
+      [
+        "INC-00013",
+        "l2_escalation",
+        "l1_guided",
+        0.63
+      ],
+      [
+        "INC-00096",
+        "l2_escalation",
+        "l1_guided",
+        0.43
+      ],
+      [
+        "INC-00141",
+        "l1_guided",
+        "l2_escalation",
+        0.57
+      ],
+      [
+        "INC-00227",
+        "l1_guided",
+        "l2_escalation",
+        0.49
+      ],
+      [
+        "INC-00056",
+        "l1_guided",
+        "l2_escalation",
+        0.51
+      ],
+      [
+        "INC-00147",
+        "l1_guided",
+        "l2_escalation",
+        0.45
+      ],
+      [
+        "INC-00097",
+        "l1_guided",
+        "l2_escalation",
+        0.67
+      ]
+    ],
+    "multi_seed": {
+      "routing_accuracy": 0.8484848484848485,
+      "baseline_accuracy": 0.7878787878787878,
+      "l2_recall": 0.8953647339401271,
+      "false_escalation_rate": 0.23149920255183412,
+      "primary_runbook_hit": 0.9606060606060606,
+      "doc_recall_at5": 0.8594949494949495
+    }
+  },
+  "chaos": {
+    "misdirection": [
+      [
+        "INC-00005",
+        true,
+        "non_it"
+      ],
+      [
+        "INC-00127",
+        true,
+        "l1_guided"
+      ],
+      [
+        "INC-00225",
+        true,
+        "non_it"
+      ],
+      [
+        "INC-00249",
+        true,
+        "non_it"
+      ],
+      [
+        "INC-00279",
+        true,
+        "non_it"
+      ]
+    ],
+    "miscategorized": [
+      [
+        "INC-00010",
+        false,
+        "l1_guided"
+      ],
+      [
+        "INC-00054",
+        true,
+        "l2_escalation"
+      ],
+      [
+        "INC-00130",
+        true,
+        "l2_escalation"
+      ],
+      [
+        "INC-00242",
+        true,
+        "l1_guided"
+      ],
+      [
+        "INC-00300",
+        true,
+        "l2_escalation"
+      ]
+    ],
+    "false_asset": [
+      [
+        "INC-00011",
+        true,
+        "needs_clarification"
+      ],
+      [
+        "INC-00048",
+        true,
+        "needs_clarification"
+      ],
+      [
+        "INC-00180",
+        true,
+        "needs_clarification"
+      ],
+      [
+        "INC-00217",
+        true,
+        "needs_clarification"
+      ]
+    ],
+    "unknown_system": [
+      [
+        "INC-00014",
+        true,
+        "l2_escalation"
+      ],
+      [
+        "INC-00089",
+        true,
+        "l2_escalation"
+      ],
+      [
+        "INC-00298",
+        true,
+        "l2_escalation"
+      ]
+    ],
+    "contradictory": [
+      [
+        "INC-00035",
+        true,
+        "l2_escalation"
+      ],
+      [
+        "INC-00059",
+        true,
+        "l2_escalation"
+      ],
+      [
+        "INC-00124",
+        true,
+        "l2_escalation"
+      ],
+      [
+        "INC-00253",
+        true,
+        "l2_escalation"
+      ]
+    ],
+    "emotional": [
+      [
+        "INC-00045",
+        true,
+        "l2_escalation"
+      ],
+      [
+        "INC-00104",
+        true,
+        "l2_escalation"
+      ],
+      [
+        "INC-00155",
+        true,
+        "l2_escalation"
+      ],
+      [
+        "INC-00195",
+        true,
+        "l2_escalation"
+      ],
+      [
+        "INC-00198",
+        true,
+        "l2_escalation"
+      ]
+    ],
+    "vague": [
+      [
+        "INC-00088",
+        true,
+        "needs_clarification"
+      ],
+      [
+        "INC-00149",
+        true,
+        "needs_clarification"
+      ],
+      [
+        "INC-00189",
+        true,
+        "needs_clarification"
+      ],
+      [
+        "INC-00258",
+        true,
+        "needs_clarification"
+      ],
+      [
+        "INC-00296",
+        true,
+        "needs_clarification"
+      ],
+      [
+        "INC-00307",
+        true,
+        "needs_clarification"
+      ]
+    ],
+    "red_herring": [
+      [
+        "INC-00151",
+        false,
+        "l1_guided"
+      ],
+      [
+        "INC-00219",
+        true,
+        "l2_escalation"
+      ],
+      [
+        "INC-00224",
+        true,
+        "l2_escalation"
+      ],
+      [
+        "INC-00315",
+        true,
+        "l2_escalation"
+      ]
+    ]
+  }
+}

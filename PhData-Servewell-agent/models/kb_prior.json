@@ -1,0 +1,381 @@
+{
+ "subcat_doc_prior": {
+  "Loyalty Sync": {
+   "runbooks/network-router-offline.md": 1.0,
+   "system-specs/foodtech-pos.md": 0.833,
+   "runbooks/online-orders-sync-failure.md": 1.0,
+   "runbooks/network-slow.md": 0.833,
+   "system-specs/orbitpos.md": 0.167
+  },
+  "PIN Pad": {
+   "faq/pos-faq.md": 0.5,
+   "runbooks/pos-payment-error.md": 1.0,
+   "runbooks/pos-pin-pad.md": 1.0,
+   "system-specs/foodtech-pos.md": 1.0
+  },
+  "Guest Wi-Fi": {
+   "runbooks/network-devices-not-connecting.md": 0.333,
+   "system-specs/netlink-router.md": 1.0,
+   "runbooks/network-router-offline.md": 0.889,
+   "faq/network-faq.md": 1.0,
+   "runbooks/network-guest-wifi.md": 1.0
+  },
+  "Scanner": {
+   "runbooks/pos-scanner.md": 1.0,
+   "system-specs/foodtech-pos.md": 1.0
+  },
+  "Intermittent": {
+   "runbooks/network-devices-not-connecting.md": 1.0,
+   "system-specs/netlink-router.md": 1.0,
+   "runbooks/network-router-offline.md": 0.5,
+   "runbooks/network-slow.md": 1.0,
+   "runbooks/online-orders-sync-failure.md": 0.167,
+   "faq/network-faq.md": 0.833,
+   "runbooks/pos-slow-performance.md": 0.167,
+   "runbooks/network-guest-wifi.md": 0.167
+  },
+  "DHCP": {
+   "runbooks/network-devices-not-connecting.md": 1.0,
+   "system-specs/netlink-router.md": 1.0,
+   "runbooks/network-router-offline.md": 0.333,
+   "faq/network-faq.md": 1.0,
+   "runbooks/network-guest-wifi.md": 0.333
+  },
+  "Printer Integration": {
+   "system-specs/star-printer.md": 0.5,
+   "runbooks/printer-offline.md": 1.0,
+   "runbooks/pos-printer-integration.md": 1.0,
+   "runbooks/printer-driver-reinstall.md": 1.0,
+   "faq/printers-faq.md": 0.667,
+   "system-specs/epson-printer.md": 0.667,
+   "runbooks/printer-paper-jam.md": 0.333,
+   "system-specs/foodtech-pos.md": 0.5,
+   "system-specs/orbitpos.md": 0.167
+  },
+  "Printer Offline": {
+   "system-specs/star-printer.md": 0.5,
+   "runbooks/printer-offline.md": 1.0,
+   "runbooks/pos-printer-integration.md": 1.0,
+   "runbooks/printer-driver-reinstall.md": 0.25,
+   "faq/printers-faq.md": 1.0,
+   "system-specs/epson-printer.md": 0.5
+  },
+  "Overcooling": {
+   "runbooks/soft-serve-overcooling.md": 1.0,
+   "faq/soft-serve-faq.md": 1.0,
+   "system-specs/frostypro-soft-serve.md": 0.571,
+   "system-specs/netlink-router.md": 0.143,
+   "system-specs/creamtech-soft-serve.md": 0.429
+  },
+  "Network": {
+   "runbooks/network-devices-not-connecting.md": 1.0,
+   "system-specs/netlink-router.md": 1.0,
+   "system-specs/foodtech-pos.md": 0.444,
+   "faq/network-faq.md": 1.0,
+   "runbooks/network-slow.md": 1.0,
+   "runbooks/pos-software-update.md": 0.111,
+   "runbooks/pos-slow-performance.md": 0.556,
+   "runbooks/network-router-offline.md": 0.333,
+   "system-specs/orbitpos.md": 0.111
+  },
+  "Slow Performance": {
+   "runbooks/pos-slow-performance.md": 1.0,
+   "system-specs/foodtech-pos.md": 0.667,
+   "faq/pos-faq.md": 0.667,
+   "system-specs/orbitpos.md": 0.333,
+   "runbooks/network-slow.md": 0.333
+  },
+  "Order Acceptance": {
+   "runbooks/online-orders-aggregator-disconnect.md": 0.667,
+   "system-specs/foodtech-pos.md": 0.167,
+   "faq/online-orders-faq.md": 1.0,
+   "runbooks/online-orders-sync-failure.md": 1.0,
+   "runbooks/online-orders-not-on-kds.md": 1.0,
+   "runbooks/network-router-offline.md": 0.333,
+   "system-specs/orbitpos.md": 0.167,
+   "runbooks/network-slow.md": 0.333,
+   "runbooks/pos-printer-integration.md": 0.167,
+   "runbooks/pos-software-update.md": 0.333,
+   "system-specs/epson-printer.md": 0.167,
+   "system-specs/creamtech-soft-serve.md": 0.167
+  },
+  "Duplicate Orders": {
+   "runbooks/online-orders-aggregator-disconnect.md": 0.667,
+   "system-specs/frostypro-soft-serve.md": 0.111,
+   "faq/online-orders-faq.md": 0.778,
+   "runbooks/online-orders-sync-failure.md": 1.0,
+   "runbooks/online-orders-not-on-kds.md": 0.222,
+   "runbooks/network-router-offline.md": 0.444,
+   "faq/network-faq.md": 0.111,
+   "runbooks/network-slow.md": 0.333,
+   "system-specs/foodtech-pos.md": 0.111,
+   "runbooks/pos-payment-error.md": 0.111,
+   "system-specs/star-printer.md": 0.111,
+   "runbooks/pos-printer-integration.md": 0.222,
+   "system-specs/epson-printer.md": 0.111,
+   "system-specs/netlink-router.md": 0.111
+  },
+  "End-of-Day": {
+   "runbooks/pos-payment-error.md": 0.5,
+   "system-specs/foodtech-pos.md": 0.75,
+   "faq/pos-faq.md": 0.5,
+   "runbooks/pos-end-of-day.md": 1.0,
+   "runbooks/network-slow.md": 0.25,
+   "sop/shift-end-checklist.md": 0.75,
+   "runbooks/pos-slow-performance.md": 0.5,
+   "runbooks/pos-screen-frozen.md": 0.25,
+   "system-specs/orbitpos.md": 0.25
+  },
+  "Dispensing Issue": {
+   "runbooks/soft-serve-error-codes.md": 1.0,
+   "system-specs/frostypro-soft-serve.md": 1.0,
+   "system-specs/creamtech-soft-serve.md": 1.0,
+   "faq/soft-serve-faq.md": 1.0,
+   "runbooks/soft-serve-motor-alarm.md": 0.5,
+   "runbooks/soft-serve-overcooling.md": 0.5,
+   "runbooks/soft-serve-not-cooling.md": 0.5
+  },
+  "Zomato Down": {
+   "runbooks/online-orders-aggregator-disconnect.md": 1.0,
+   "system-specs/netlink-router.md": 0.375,
+   "runbooks/network-router-offline.md": 0.75,
+   "runbooks/online-orders-sync-failure.md": 1.0,
+   "faq/online-orders-faq.md": 0.875,
+   "runbooks/online-orders-not-on-kds.md": 0.375,
+   "system-specs/orbitpos.md": 0.125
+  },
+  "Not Detected": {
+   "runbooks/printer-offline.md": 1.0,
+   "runbooks/pos-printer-integration.md": 1.0,
+   "runbooks/printer-driver-reinstall.md": 0.778,
+   "faq/printers-faq.md": 1.0,
+   "system-specs/epson-printer.md": 0.667,
+   "system-specs/star-printer.md": 0.333,
+   "runbooks/network-devices-not-connecting.md": 0.333
+  },
+  "Mix Low Alert": {
+   "runbooks/soft-serve-error-codes.md": 0.857,
+   "system-specs/netlink-router.md": 0.143,
+   "faq/soft-serve-faq.md": 0.857,
+   "system-specs/creamtech-soft-serve.md": 0.857,
+   "system-specs/frostypro-soft-serve.md": 0.429
+  },
+  "Touchscreen": {
+   "runbooks/kiosk-touchscreen.md": 1.0,
+   "system-specs/foodtech-pos.md": 0.5,
+   "faq/kiosks-faq.md": 1.0,
+   "runbooks/kiosk-frozen.md": 0.25,
+   "system-specs/netlink-router.md": 0.25
+  },
+  "Menu Mismatch": {
+   "system-specs/foodtech-pos.md": 0.5,
+   "runbooks/online-orders-sync-failure.md": 1.0,
+   "runbooks/online-orders-menu-mismatch.md": 1.0,
+   "faq/online-orders-faq.md": 1.0,
+   "runbooks/network-router-offline.md": 0.25,
+   "runbooks/online-orders-aggregator-disconnect.md": 0.25
+  },
+  "Driver Issue": {
+   "system-specs/star-printer.md": 1.0,
+   "runbooks/pos-printer-integration.md": 1.0,
+   "runbooks/printer-driver-reinstall.md": 1.0,
+   "faq/printers-faq.md": 1.0
+  },
+  "Portal Down": {
+   "runbooks/online-orders-aggregator-disconnect.md": 1.0,
+   "system-specs/netlink-router.md": 0.111,
+   "runbooks/network-router-offline.md": 1.0,
+   "faq/online-orders-faq.md": 0.889,
+   "runbooks/online-orders-sync-failure.md": 0.889,
+   "faq/network-faq.md": 0.667,
+   "runbooks/network-slow.md": 0.667,
+   "runbooks/pos-slow-performance.md": 0.111,
+   "runbooks/network-devices-not-connecting.md": 0.111
+  },
+  "Sync Failure": {
+   "system-specs/star-printer.md": 0.333,
+   "runbooks/online-orders-aggregator-disconnect.md": 1.0,
+   "runbooks/pos-printer-integration.md": 0.333,
+   "faq/online-orders-faq.md": 0.667,
+   "runbooks/online-orders-sync-failure.md": 1.0,
+   "system-specs/foodtech-pos.md": 0.333,
+   "runbooks/network-slow.md": 0.333,
+   "system-specs/netlink-router.md": 0.333,
+   "runbooks/network-router-offline.md": 0.333
+  },
+  "VPN": {
+   "system-specs/netlink-router.md": 1.0,
+   "runbooks/network-router-offline.md": 0.667,
+   "runbooks/network-vpn.md": 1.0,
+   "runbooks/online-orders-sync-failure.md": 0.167,
+   "faq/network-faq.md": 0.667,
+   "runbooks/network-slow.md": 0.167
+  },
+  "Payment Reader": {
+   "runbooks/pos-payment-error.md": 1.0,
+   "system-specs/frostypro-soft-serve.md": 0.333,
+   "runbooks/kiosk-payment-reader.md": 1.0,
+   "faq/kiosks-faq.md": 1.0,
+   "system-specs/epson-printer.md": 0.333
+  },
+  "Paper Jam": {
+   "system-specs/star-printer.md": 1.0,
+   "runbooks/pos-printer-integration.md": 0.333,
+   "runbooks/printer-paper-jam.md": 1.0,
+   "faq/printers-faq.md": 1.0
+  },
+  "Screen Frozen": {
+   "faq/pos-faq.md": 0.222,
+   "runbooks/pos-screen-frozen.md": 0.667,
+   "system-specs/orbitpos.md": 0.111,
+   "system-specs/foodtech-pos.md": 0.556,
+   "runbooks/pos-software-update.md": 0.111,
+   "runbooks/kiosk-touchscreen.md": 0.444,
+   "runbooks/kiosk-frozen.md": 0.444,
+   "faq/kiosks-faq.md": 0.444,
+   "runbooks/pos-startup-failure.md": 0.111,
+   "runbooks/kiosk-software-crash.md": 0.111
+  },
+  "Wrong Output": {
+   "system-specs/star-printer.md": 0.75,
+   "runbooks/pos-printer-integration.md": 1.0,
+   "faq/printers-faq.md": 1.0,
+   "runbooks/printer-wrong-output.md": 1.0,
+   "system-specs/epson-printer.md": 0.25
+  },
+  "Error Code": {
+   "runbooks/soft-serve-error-codes.md": 1.0,
+   "system-specs/creamtech-soft-serve.md": 0.667,
+   "faq/soft-serve-faq.md": 1.0,
+   "system-specs/frostypro-soft-serve.md": 0.833
+  },
+  "Machine Won't Start": {
+   "runbooks/soft-serve-error-codes.md": 1.0,
+   "system-specs/frostypro-soft-serve.md": 1.0,
+   "system-specs/creamtech-soft-serve.md": 0.857,
+   "runbooks/soft-serve-motor-alarm.md": 0.714,
+   "runbooks/soft-serve-not-cooling.md": 0.286,
+   "faq/soft-serve-faq.md": 0.714
+  },
+  "Terminal Startup": {
+   "runbooks/pos-startup-failure.md": 1.0,
+   "system-specs/foodtech-pos.md": 0.75,
+   "faq/pos-faq.md": 0.5,
+   "runbooks/pos-screen-frozen.md": 0.5,
+   "runbooks/pos-software-update.md": 0.25,
+   "system-specs/orbitpos.md": 0.25
+  },
+  "Router Offline": {
+   "system-specs/netlink-router.md": 1.0,
+   "runbooks/network-router-offline.md": 1.0,
+   "faq/network-faq.md": 0.2
+  },
+  "Cash Drawer": {
+   "faq/pos-faq.md": 0.333,
+   "runbooks/pos-cash-drawer.md": 1.0,
+   "system-specs/foodtech-pos.md": 0.667,
+   "system-specs/orbitpos.md": 0.333
+  },
+  "Payment Error": {
+   "runbooks/pos-payment-error.md": 1.0,
+   "runbooks/network-slow.md": 1.0,
+   "system-specs/foodtech-pos.md": 1.0,
+   "runbooks/network-devices-not-connecting.md": 0.333,
+   "faq/pos-faq.md": 0.333
+  },
+  "Swiggy Down": {
+   "runbooks/online-orders-aggregator-disconnect.md": 1.0,
+   "system-specs/netlink-router.md": 0.25,
+   "runbooks/network-router-offline.md": 1.0,
+   "faq/online-orders-faq.md": 1.0,
+   "runbooks/online-orders-sync-failure.md": 1.0,
+   "system-specs/orbitpos.md": 0.25,
+   "runbooks/network-slow.md": 0.25,
+   "system-specs/foodtech-pos.md": 0.25
+  },
+  "Device Connectivity": {
+   "runbooks/network-devices-not-connecting.md": 1.0,
+   "system-specs/netlink-router.md": 1.0,
+   "runbooks/network-router-offline.md": 0.75,
+   "faq/network-faq.md": 1.0,
+   "runbooks/network-slow.md": 0.25
+  },
+  "Cleaning Cycle": {
+   "system-specs/creamtech-soft-serve.md": 1.0,
+   "runbooks/soft-serve-cleaning-stuck.md": 1.0,
+   "faq/soft-serve-faq.md": 0.25,
+   "runbooks/soft-serve-error-codes.md": 0.75,
+   "system-specs/frostypro-soft-serve.md": 0.75
+  },
+  "Garbled Text": {
+   "faq/printers-faq.md": 1.0,
+   "runbooks/pos-printer-integration.md": 0.75,
+   "runbooks/printer-driver-reinstall.md": 0.75,
+   "system-specs/epson-printer.md": 0.5,
+   "runbooks/printer-wrong-output.md": 1.0,
+   "system-specs/star-printer.md": 0.5
+  },
+  "Not on KDS": {
+   "runbooks/network-devices-not-connecting.md": 0.5,
+   "runbooks/online-orders-aggregator-disconnect.md": 0.5,
+   "system-specs/creamtech-soft-serve.md": 0.167,
+   "runbooks/online-orders-sync-failure.md": 0.667,
+   "runbooks/online-orders-not-on-kds.md": 1.0,
+   "system-specs/foodtech-pos.md": 0.333,
+   "faq/online-orders-faq.md": 0.833,
+   "runbooks/network-router-offline.md": 0.167,
+   "system-specs/orbitpos.md": 0.167,
+   "runbooks/pos-printer-integration.md": 0.333
+  },
+  "Slow Network": {
+   "system-specs/netlink-router.md": 1.0,
+   "runbooks/network-router-offline.md": 0.5,
+   "runbooks/network-slow.md": 1.0,
+   "runbooks/pos-slow-performance.md": 1.0,
+   "faq/network-faq.md": 0.5
+  },
+  "Motor Alarm": {
+   "system-specs/creamtech-soft-serve.md": 1.0,
+   "runbooks/soft-serve-motor-alarm.md": 1.0,
+   "faq/soft-serve-faq.md": 1.0
+  },
+  "Blank Receipt": {
+   "runbooks/pos-printer-integration.md": 1.0,
+   "faq/printers-faq.md": 1.0,
+   "system-specs/epson-printer.md": 0.667,
+   "runbooks/printer-wrong-output.md": 1.0,
+   "system-specs/star-printer.md": 0.333,
+   "runbooks/printer-driver-reinstall.md": 0.333
+  },
+  "Software Crash": {
+   "runbooks/pos-startup-failure.md": 0.667,
+   "runbooks/kiosk-software-crash.md": 1.0,
+   "faq/kiosks-faq.md": 1.0,
+   "runbooks/kiosk-frozen.md": 0.333,
+   "system-specs/netlink-router.md": 0.333
+  },
+  "Timeout": {
+   "runbooks/kiosk-touchscreen.md": 1.0,
+   "runbooks/kiosk-frozen.md": 1.0,
+   "system-specs/netlink-router.md": 1.0,
+   "faq/kiosks-faq.md": 1.0
+  },
+  "Payment Timeout": {
+   "runbooks/online-orders-aggregator-disconnect.md": 0.5,
+   "runbooks/network-router-offline.md": 0.5,
+   "faq/online-orders-faq.md": 0.5,
+   "runbooks/online-orders-sync-failure.md": 0.5,
+   "runbooks/network-slow.md": 1.0,
+   "runbooks/pos-payment-error.md": 0.5,
+   "runbooks/kiosk-payment-reader.md": 0.5,
+   "system-specs/creamtech-soft-serve.md": 0.5,
+   "faq/kiosks-faq.md": 0.5
+  },
+  "Software Update": {
+   "runbooks/pos-startup-failure.md": 0.5,
+   "system-specs/foodtech-pos.md": 1.0,
+   "runbooks/pos-screen-frozen.md": 1.0,
+   "runbooks/pos-software-update.md": 1.0
+  }
+ }
+}

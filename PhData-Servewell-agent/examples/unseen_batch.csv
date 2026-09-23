@@ -1,0 +1,5 @@
+ticket_id,store_id,submitted_by,date_opened,priority,category,subcategory,subject,description,asset_id,system_version
+INC-NEW-101,SW-0007,Kiran Das,2026-06-03T19:10:00+05:30,P2,Wi-Fi / Network,Router Offline,No internet in the whole store,"Router RTR-0007-01 lights are off and none of our devices can get online. POS, kitchen display and phones are all offline. Dinner rush has started.",RTR-0007-01,NetLink NL-3000 v2.1
+INC-NEW-102,SW-0001,Meera Nair,2026-06-03T10:40:00+05:30,P3,POS,Loyalty Sync,Loyalty points not credited,"Customers are not getting loyalty points after payment on POS-0001-T1. Everything else on the POS works normally. Started this morning.",POS-0001-T1,FoodTech POS v5.1.0
+INC-NEW-103,SW-0005,Suresh P,2026-06-03T16:30:00+05:30,P4,Printers,Paper Jam,Paper stuck in receipt printer,"Paper is jammed in the receipt printer PRN-0005-P1 and will not come out.",PRN-0005-P1,EpsonTM-T88VI v1.12
+INC-NEW-104,SW-0007,Anil,2026-06-03T11:15:00+05:30,P3,Kiosks,Frozen,Kiosk stuck,"The thing is broken or something, please fix asap",,

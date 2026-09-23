@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ServeWell IT Support Agent</title>
+<style>
+:root{--bg:#f4f5fa;--card:#fff;--ink:#1b2233;--muted:#667085;--line:#e4e7ee;--brand:#4338ca;--brand2:#eef0ff;
+--green:#0f8a5f;--greenbg:#e5f6ee;--purple:#6d28d9;--purplebg:#f0e9fd;--blue:#1d6fd6;--bluebg:#e6f0fd;--gray:#5b6472;--graybg:#eceef2;
+--amber:#b45309;--amberbg:#fdf1dc;--red:#c0362c;--redbg:#fdeae8;--radius:12px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{background:#fff;border-bottom:1px solid var(--line);padding:12px 24px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:20}
+header h1{font-size:17px;margin:0;font-weight:650}
+header .sub{color:var(--muted);font-size:12px}
+.spacer{flex:1}
+.badge{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.b-green{background:var(--greenbg);color:var(--green)}.b-purple{background:var(--purplebg);color:var(--purple)}
+.b-blue{background:var(--bluebg);color:var(--blue)}.b-gray{background:var(--graybg);color:var(--gray)}
+.b-amber{background:var(--amberbg);color:var(--amber)}.b-red{background:var(--redbg);color:var(--red)}
+nav{display:flex;gap:4px;padding:0 24px;background:#fff;border-bottom:1px solid var(--line)}
+nav button{border:0;background:none;padding:12px 14px;font-size:14px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;font-weight:600}
+nav button.on{color:var(--brand);border-color:var(--brand)}
+main{padding:20px 24px;max-width:1500px;margin:0 auto}
+.grid{display:grid;grid-template-columns:380px 1fr;gap:20px;align-items:start}
+@media(max-width:980px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px}
+.card h3{margin:0 0 10px;font-size:14px;display:flex;align-items:center;gap:8px}
+.card h3 .num{background:var(--brand);color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+.card h3 .sub{color:var(--muted);font-weight:400;font-size:12px}
+.muted{color:var(--muted)}.small{font-size:12px}
+input,select,textarea{font:inherit;border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%;background:#fff;color:var(--ink)}
+textarea{min-height:170px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px}
+button.primary{background:var(--brand);color:#fff;border:0;border-radius:8px;padding:10px 16px;font-weight:650;cursor:pointer;font-size:14px}
+button.primary:hover{filter:brightness(1.08)}button.primary:disabled{opacity:.5;cursor:default}
+button.ghost{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:var(--ink)}
+button.ghost:hover{background:var(--brand2)}
+.tabs{display:flex;gap:6px;margin-bottom:10px}.tabs button{flex:1}
+.tabs button.on{background:var(--brand2);border-color:var(--brand);color:var(--brand);font-weight:650}
+.list{max-height:52vh;overflow:auto;border:1px solid var(--line);border-radius:10px;margin-top:8px}
+.item{padding:9px 12px;border-bottom:1px solid var(--line);cursor:pointer}
+.item:last-child{border:0}.item:hover{background:#f8f9ff}.item.sel{background:var(--brand2);box-shadow:inset 3px 0 0 var(--brand)}
+.item .t{font-weight:600;font-size:13px}.item .m{color:var(--muted);font-size:12px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:2px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;font-size:13px}.kv div:nth-child(odd){color:var(--muted)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{padding:2px 9px;border-radius:6px;background:var(--graybg);font-size:12px;color:#38404d}
+.chip.warn{background:var(--amberbg);color:var(--amber)}.chip.block{background:var(--redbg);color:var(--red)}.chip.ok{background:var(--greenbg);color:var(--green)}
+pre{margin:0;white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px}
+.desc{background:#fafbfd;border:1px solid var(--line);border-radius:8px;padding:10px 12px;white-space:pre-wrap}
+.strip{display:flex;gap:18px;align-items:center;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;margin-bottom:14px}
+.strip .big{font-size:20px;font-weight:700}
+.stat{display:flex;flex-direction:column}.stat .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.meter{height:8px;background:var(--graybg);border-radius:999px;overflow:hidden;width:110px}.meter>i{display:block;height:100%;background:var(--brand)}
+.banner{border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px}
+.banner.amber{background:var(--amberbg);color:#7a3a05}.banner.red{background:var(--redbg);color:#8f261e}.banner.blue{background:var(--bluebg);color:#164f96}
+.finding{padding:7px 0;border-bottom:1px dashed var(--line);font-size:13px}.finding:last-child{border:0}
+.bar{height:6px;background:var(--graybg);border-radius:999px;overflow:hidden;width:90px;display:inline-block;vertical-align:middle}.bar>i{display:block;height:100%;background:var(--brand)}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:12px}
+tr.click{cursor:pointer}tr.click:hover{background:#f8f9ff}
+details{border:1px solid var(--line);border-radius:8px;margin:6px 0;background:#fff}summary{cursor:pointer;padding:8px 10px;list-style:none}
+summary::-webkit-details-marker{display:none}details[open] summary{border-bottom:1px solid var(--line);background:#fafbfd}
+details .body{padding:10px 12px}
+.bubble{background:#f1f3fb;border-radius:12px 12px 12px 2px;padding:12px 14px;white-space:pre-wrap;line-height:1.55;font-size:13.5px}
+.email{border:1px solid var(--line);border-radius:10px;overflow:hidden}.email .h{background:#fafbfd;padding:10px 14px;border-bottom:1px solid var(--line);font-size:13px}
+.email .b{padding:12px 14px}.email .b h4{margin:12px 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}.email .b h4:first-child{margin-top:0}
+.trace{border-left:2px solid var(--line);margin-left:6px;padding-left:14px}.trace .e{position:relative;padding:5px 0}
+.trace .e:before{content:"";position:absolute;left:-20px;top:11px;width:10px;height:10px;border-radius:50%;background:var(--brand)}
+.bottombar{position:sticky;bottom:0;background:linear-gradient(transparent,var(--bg) 40%);padding:16px 0 4px;display:flex;justify-content:center;gap:10px}
+.biz .tech{display:none!important}
+.hide{display:none!important}
+.modal{position:fixed;inset:0;background:rgba(20,24,40,.45);z-index:50;display:flex;align-items:flex-start;justify-content:center;padding-top:8vh}
+.modal-card{background:#fff;border-radius:14px;padding:22px 24px;width:min(560px,92vw);box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.modal-card label{display:block;font-size:12px;color:var(--muted);margin:12px 0 4px;font-weight:600}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#aab1bd;margin-right:4px}.dot.on{background:var(--green)}
+
+.empty{text-align:center;color:var(--muted);padding:70px 20px}
+.empty .ic{font-size:40px}
+.toolbar{display:flex;gap:14px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.switch{display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;user-select:none}.switch input{width:auto}
+.metric{display:inline-block;min-width:150px;margin:0 12px 12px 0;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.metric .v{font-size:24px;font-weight:700}.metric .l{font-size:12px;color:var(--muted)}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:s .7s linear infinite;vertical-align:-2px}
+@keyframes s{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>ServeWell IT Support Agent</h1><div class="sub">L1 triage, guidance and escalation on the (simulated) PhData Intelligence Platform</div></div>
+  <div class="spacer"></div>
+  <span id="hInfo" class="small muted"></span>
+  <button id="aiBtn" class="ghost" title="Language model (AI) settings"><span id="aiDot" class="dot"></span><span id="aiLabel">AI: loading</span></button>
+</header>
+<div id="aiModal" class="modal hide"><div class="modal-card">
+  <h3 style="margin:0 0 6px;font-size:16px">Language model (AI) settings</h3>
+  <p class="small muted" style="margin:0">The agent works fully offline. Connect a model so it can read messy tickets, rewrite runbook steps in plain language, and give a second opinion. Free options: Groq or Google Gemini.</p>
+  <label>Provider</label><select id="aiProv"></select>
+  <div id="aiHelp" class="small muted" style="margin-top:4px"></div>
+  <label>API key</label><input id="aiKey" type="password" placeholder="paste your key (kept in memory only, never saved)" autocomplete="off">
+  <div class="row" style="margin-top:10px"><button class="primary" id="aiConnect">Connect and list models</button><span id="aiMsg" class="small"></span></div>
+  <div id="aiModelRow" class="hide"><label>Model</label><select id="aiModel"></select>
+    <div class="row" style="margin-top:10px"><button class="primary" id="aiUse">Use this model</button><button class="ghost" id="aiOff">Turn AI off</button></div></div>
+  <p class="small muted" style="margin-top:14px">Privacy: only cleaned ticket text is sent (phone numbers and e-mails are removed). Use the synthetic dataset only. Free tiers may use inputs to improve provider products; check the provider's terms.</p>
+  <div style="text-align:right"><button class="ghost" id="aiClose">Close</button></div>
+</div></div>
+<nav id="nav">
+  <button data-tab="run" class="on">Triage a ticket</button>
+  <button data-tab="dash">Evaluation and audit</button>
+</nav>
+
+<main>
+<!-- ================= RUN TAB ================= -->
+<section id="tab-run">
+<div class="grid">
+  <div>
+    <div class="card">
+      <div class="tabs" id="srcTabs"><button class="ghost on" data-src="samples">Sample tickets</button><button class="ghost" data-src="new">New ticket</button></div>
+      <div id="src-samples">
+        <div class="row"><select id="fGroup" style="flex:1"></select></div>
+        <input id="fSearch" placeholder="Search id, subject, category" style="margin-top:8px">
+        <div class="list" id="sampleList"></div>
+      </div>
+      <div id="src-new" class="hide">
+        <p class="small muted" style="margin-top:0">Paste an email or free text, or a ticket in JSON. You can also load a .json or .txt file.</p>
+        <textarea id="newText" placeholder="POS terminal will not start after the power cut&#10;Hi team, at SW-0007 the billing machine POS-0007-T1 shows a black screen since 9am. I restarted it twice."></textarea>
+        <div class="row" style="margin-top:8px"><input id="newStore" placeholder="Store id (optional, e.g. SW-0007)" style="flex:1"><input type="file" id="newFile" accept=".json,.txt" style="flex:1"></div>
+        <div style="margin-top:10px"><button class="primary" id="runNew">Run agent</button></div>
+      </div>
+    </div>
+    <div class="card hide" id="preview"></div>
+  </div>
+
+  <div id="out">
+    <div class="empty"><div class="ic">&#128295;</div><h2 style="margin:8px 0">Pick a ticket and run the agent</h2>
+      <div>Try <b>INC-00162</b> (clean printer issue), a "Messy" ticket, or paste your own on the <b>New ticket</b> tab.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ================= DASHBOARD TAB ================= -->
+<section id="tab-dash" class="hide">
+  <div class="card">
+    <h3>Offline evaluation <span class="sub">held-out tickets, 5 random splits, plus the messy-ticket suite</span></h3>
+    <div class="row"><button class="primary" id="runEval">Run evaluation</button><span id="evalMsg" class="muted small"></span></div>
+    <div id="evalOut" style="margin-top:14px"></div>
+  </div>
+  <div class="card">
+    <h3>Does the AI help? <span class="sub">same tickets, rules only vs rules + AI</span></h3>
+    <div class="row"><select id="abN" style="width:auto"><option value="6">6 messy tickets (quick)</option><option value="12" selected>12 messy tickets</option><option value="36">all 36 messy tickets</option></select>
+      <button class="primary" id="runAB">Run comparison</button><span id="abMsg" class="muted small"></span></div>
+    <div id="abOut" style="margin-top:14px"></div>
+  </div>
+  <div class="card">
+    <h3>Audit log <span class="sub">every intake, decision and action; hash-chained so tampering is detectable</span> <span id="auditBadge"></span></h3>
+    <div id="auditOut" class="small muted">Nothing yet. Run a ticket first.</div>
+    <div style="margin-top:8px"><button class="ghost" id="refreshAudit">Refresh</button></div>
+  </div>
+</section>
+</main>
+
+<script>
+// ==== PURE:START  (render helpers - no DOM access, unit-testable in node)
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ROUTES = {
+  l1_guided:{label:'L1 guided',cls:'green',blurb:'The agent guides the store through runbook steps.'},
+  l2_escalation:{label:'L2 escalation',cls:'purple',blurb:'Handed to specialists with a complete package.'},
+  needs_clarification:{label:'Needs clarification',cls:'blue',blurb:'The agent asks targeted questions before acting.'},
+  non_it:{label:'Not an IT issue',cls:'gray',blurb:'Redirected to the function that owns it.'}
+};
+const STEPS = ['Ticket','Triage and enrichment','Retrieval','Decision','Grounded guidance','Guardrails','Actions','Messages','Trace'];
+const rb = r => { const x = ROUTES[r] || {label:r,cls:'gray'}; return `<span class="badge b-${x.cls}">${esc(x.label)}</span>`; };
+const t16 = s => s ? esc(String(s).replace('T',' ').slice(0,16)) : '-';
+const humanize = s => esc(String(s).replace(/_/g,' '));
+const pct = x => Math.round((x||0)*100);
+const RISK = {read_only:'b-green',reversible:'b-blue',state_changing:'b-amber',unknown:'b-red'};
+
+function card(n, title, sub, body, cls=''){
+  return `<div class="card step ${cls}" data-step="${n}"><h3><span class="num">${n}</span>${esc(title)} <span class="sub">${esc(sub||'')}</span></h3>${body}</div>`;
+}
+function kv(pairs){ return '<div class="kv">' + pairs.filter(p=>p[1]!==null&&p[1]!==undefined&&p[1]!=='').map(p=>`<div>${esc(p[0])}</div><div>${p[1]}</div>`).join('') + '</div>'; }
+
+function renderTicketCard(t){
+  const hist = (t.history||[]).length ? `<details><summary class="small">L1 history (${t.history.length} entries)</summary><div class="body">${t.history.map(h=>`<div class="small" style="margin-bottom:6px"><b>${esc(h.actor||'')}</b> <span class="muted">${esc(h.timestamp||'')}</span><br>${esc(h.note||'')}</div>`).join('')}</div></details>` : '';
+  const leak = (t.leak_guard_dropped||[]).length ? `<div class="banner blue small">Leak guard: <b>${esc(t.leak_guard_dropped.join(', '))}</b> was present in the source file and was hidden from the agent (in the training data it contains the answer).</div>` : '';
+  const miss = (t.missing_fields||[]).length ? `<div class="small muted" style="margin-top:6px">Fields missing from this ticket: ${esc(t.missing_fields.join(', '))}</div>` : '';
+  const body = `<div class="chips" style="margin-bottom:8px">
+    <span class="chip">${esc(t.store_name||t.store_id||'store unknown')}</span><span class="chip">filed as ${esc(t.category||'?')} / ${esc(t.subcategory||'?')}</span>
+    <span class="chip">priority ${esc(t.priority)}</span><span class="chip">asset ${esc(t.asset_id||'none given')}</span>${t.system_version?`<span class="chip">${esc(t.system_version)}</span>`:''}
+    ${t.escalation_flag?'<span class="chip warn">escalation flag set</span>':''}</div>
+    <div style="font-weight:650;margin-bottom:6px">${esc(t.subject)}</div><div class="desc">${esc(t.description)}</div>${hist}${miss}${leak}`;
+  return card(1,'Incoming ticket',esc(t.ticket_id)+' - '+t16(t.date_opened),body);
+}
+
+
+function renderAIReader(r){
+  const L = r.llm; if(!L || !L.reader) return '';
+  const rd = L.reader;
+  if(!rd.used) return `<div class="banner amber small" style="margin-top:10px"><b>AI reader unavailable for this ticket</b> - rules-only triage was used. ${esc(rd.error||'')}</div>`;
+  const rows = rd.comparison.map(c=>`<tr><td>${esc(c.field)}</td><td>${esc(c.rules)}</td><td>${esc(c.llm)}</td><td><span class="badge ${c.agree?'b-green':'b-amber'}">${c.agree?'agree':'differ'}</span></td></tr>`).join('');
+  const applied = rd.applied.length ? '<ul style="margin:6px 0 0 18px;padding:0">'+rd.applied.map(a=>`<li>${esc(a)}</li>`).join('')+'</ul>' : '<div class="small muted" style="margin-top:6px">The model changed nothing; the rules already covered this ticket.</div>';
+  const flags = rd.flags.length ? `<div class="banner amber small">Flagged for human review: ${esc(rd.flags.join('; '))}</div>` : '';
+  return `<details open style="margin-top:12px"><summary><b>AI reader vs rules</b> <span class="badge b-purple">${esc(L.model)}</span> <span class="small muted">the model reads the text; rules stay in charge</span></summary><div class="body">
+    <table><tr><th>What was checked</th><th>Rules said</th><th>AI said</th><th></th></tr>${rows}</table>
+    <div style="margin-top:8px"><b class="small">What the AI changed</b>${applied}</div>${flags}</div></details>`;
+}
+
+function renderTriage(r, t){
+  const e = r.enrichment, f = e.findings.filter(x=>x.severity!=='info' || ['known_issue','out_of_warranty','priority_override','asset_candidate','referenced_ticket'].includes(x.code));
+  const chips = f.map(x=>`<div class="finding"><span class="chip ${x.severity==='block'?'block':x.severity==='warn'?'warn':''}">${humanize(x.code)}</span> ${esc(x.message)}</div>`).join('') || '<div class="muted small">No problems found with the ticket.</div>';
+  const asset = e.asset ? `${esc(e.asset.asset_id)} - ${esc(e.asset.asset_type)}, ${esc(e.asset.system_version)} (warranty to ${esc(e.asset.warranty_expiry||'?')})` : '<span class="chip warn">not verified in CMDB</span>';
+  const pr = e.suggested_priority !== t.priority ? `${esc(t.priority)} &rarr; <b>${esc(e.suggested_priority)}</b> <span class="muted small">(${esc(e.priority_reasons.join('; '))})</span>` : `${esc(t.priority)} (no override)`;
+  const sla = e.sla && e.sla.first_response_due ? `first response by ${t16(e.sla.first_response_due)}, resolve by ${t16(e.sla.resolution_due)}, hand to L2 by ${t16(e.sla.escalate_to_l2_by)}` : '-';
+  const body = kv([
+    ['Effective category', esc(e.domain) + (e.claimed_domain && e.claimed_domain!==e.domain ? ` <span class="muted small">(filed as ${esc(e.claimed_domain)})</span>` : '')],
+    ['Asset (CMDB lookup)', asset], ['Priority (SOP rules)', pr], ['SLA clock', sla],
+    ['Error codes', e.error_codes.length ? e.error_codes.map(c=>`<span class="chip">${esc(c)}</span>`).join(' ') : '<span class="muted">none quoted</span>'],
+    ['Already tried', e.tried_steps.length ? e.tried_steps.map(c=>`<span class="chip">${humanize(c)}</span>`).join(' ') : '<span class="muted">nothing documented</span>'],
+    ['Store impact', humanize(e.impact)], ['Recurrence', e.recurrence_count ? `${e.recurrence_count} in 30 days` : 'none found']
+  ]) + `<div style="margin-top:10px">${chips}</div>` + renderAIReader(r);
+  return card(2,'Triage and enrichment','tool calls to CMDB, SLA table, ticket history, version matrix',body);
+}
+
+function renderRetrieval(res){
+  const docs = res.retrieved.map((d,i)=>`<tr><td>${i===0?'<b>':''}${esc(d.doc)}${i===0?'</b>':''}</td><td><span class="bar"><i style="width:${Math.min(100,pct(d.score/1.4))}%"></i></span> <span class="muted small">${d.score.toFixed(2)}</span></td><td class="muted small">${esc(d.why)}</td></tr>`).join('');
+  const body = `<div class="small muted" style="margin-bottom:8px">Scoped by domain and exact system version first, then keyword search over runbook sections. The learned prior comes from the training tickets.</div>
+    <table><tr><th>Document</th><th>Score</th><th>Why it ranked</th></tr>${docs}</table>`;
+  return card(3,'Retrieval','knowledge index',body,'tech');
+}
+
+function renderDecision(res){
+  const d = res.decision, x = ROUTES[d.route] || {blurb:''};
+  const rev = d.human_review ? `<div class="banner amber"><b>Human review required:</b> ${esc(d.review_reasons.join('; '))}</div>` : '';
+  const so = res.llm && res.llm.reader && res.llm.reader.second_opinion;
+  const soHtml = so ? `<div class="small" style="margin-top:8px"><span class="badge b-purple">AI second opinion</span> suggests <b>${esc(so.route||'-')}</b> - ${so.agree?'agrees with the policy':'differs from the policy'}${so.agree?'':' ('+esc(so.effect)+')'}${so.reason?'<div class="muted">'+esc(so.reason)+'</div>':''}</div>` : '';
+  const body = `<div class="row" style="margin-bottom:8px">${rb(d.route)} <span>${esc(x.blurb)}</span></div>
+    <ul style="margin:6px 0 0 18px;padding:0">${d.reasons.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
+    ${d.hard_triggers.length?`<div class="small muted" style="margin-top:8px">SOP triggers fired: ${esc(d.hard_triggers.join(', '))}</div>`:''}
+    <div class="small muted tech" style="margin-top:6px">Escalation propensity ${d.escalation_score} (threshold 0.50). Autonomy level: ${esc(d.autonomy)}. The policy engine decides; the AI only supplies evidence and an advisory opinion.</div>${soHtml}${rev}`;
+  return card(4,'Decision','policy engine: SOP rules plus an explainable model',body);
+}
+
+function renderSteps(res){
+  const st = res.steps;
+  let body;
+  if(!st.length){
+    body = `<div class="banner blue">No runbook steps were issued for this ticket. ${res.decision.route==='l2_escalation'?'For escalations the agent only shows safe interim steps, and none apply here (or the system is not covered by the knowledge base).':''}</div>`;
+  } else {
+    body = st.map(s=>`<details ${s.n===1?'open':''}><summary><b>${s.n}. ${esc(s.title)}</b> <span class="badge b-gray">${esc(s.kind)}</span> <span class="badge ${s.grounded?'b-green':'b-red'}">${s.grounded?'grounded '+pct(s.grounding_score)+'%':'NOT grounded'}</span></summary>
+      <div class="body"><pre>${esc(s.text)}</pre><div class="small muted" style="margin-top:8px">Source: ${esc(s.source_label)}</div></div></details>`).join('');
+  }
+  const w = res.llm && res.llm.writer;
+  let wb = '';
+  if(w){ wb = w.used ? `<div class="banner blue small" style="margin:0 0 8px"><span class="badge b-purple">AI-written</span> ${w.steps_kept} of ${w.steps_written} steps passed the grounding check${(w.dropped&&w.dropped.length)?' - '+w.dropped.length+' blocked':''}.</div>`
+        : `<div class="banner amber small" style="margin:0 0 8px">AI steps were not used${w.error?' ('+esc(w.error)+')':(w.steps_written?' (too few survived the grounding check)':'')}; showing the runbook text instead.</div>`; }
+  return card(5,'Grounded guidance','every step cites its runbook section',wb+body);
+}
+
+function renderGuardrails(res){
+  const g = res.guardrails;
+  const rows = g.checks.map(c=>`<div class="finding"><span class="badge ${c.passed?'b-green':'b-red'}">${c.passed?'PASS':'FLAG'}</span> <b>${humanize(c.name)}</b> <span class="muted tech">${esc(c.detail)}</span></div>`).join('');
+  const dropped = g.dropped_steps.length ? `<div class="banner red">Blocked ${g.dropped_steps.length} ungrounded step(s): ${esc(g.dropped_steps.map(d=>d.step+' ('+d.reason+')').join('; '))}</div>` : '';
+  return card(6,'Guardrails','checked before anything leaves the system',rows+dropped);
+}
+
+function renderActions(res, tid){
+  const A = {auto_executed_simulated:['Auto (simulated)','b-green'],approved_simulated:['Approved (simulated)','b-green'],proposed:['Awaiting approval','b-amber'],blocked:['Blocked','b-red']};
+  const rows = res.actions.map((a,i)=>{ const s=A[a.status]||[a.status,'b-gray'];
+    return `<tr><td><b>${humanize(a.action)}</b><div class="small muted">${esc(a.rationale||'')}</div></td><td><span class="badge ${RISK[a.risk]||'b-gray'}">${humanize(a.risk)}</span></td>
+    <td><span class="badge ${s[1]}">${s[0]}</span><div class="small muted">${esc(a.result||'')}</div></td>
+    <td>${a.status==='proposed'?`<button class="ghost" data-approve="${i}">Approve</button>`:''}</td></tr>`; }).join('');
+  const body = `<div class="small muted" style="margin-bottom:6px">Low-risk actions run automatically; anything that changes state waits for a person. Nothing leaves this machine - execution is simulated.</div>
+    <table><tr><th>Action</th><th>Risk</th><th>Status</th><th></th></tr>${rows}</table>`;
+  return card(7,'Actions','allow-listed, with an approval gate',body);
+}
+
+function renderMessages(res){
+  let h = '';
+  if(res.l2_handoff){
+    const x = res.l2_handoff, chk = x.mandatory_info_verified || {};
+    h = `<h4 style="margin:16px 0 6px">L2 handoff package <span class="muted small">(SOP-IT-L1-002 template, pre-filled)</span></h4><div class="email"><div class="h"><b>To:</b> ${esc((x.to||[]).join(', '))}<br><b>Subject:</b> ${esc(x.subject)}</div><div class="b">
+      <h4>Issue</h4>${esc(x.issue)}
+      <h4>Asset and impact</h4>${esc(x.asset)} &middot; store impact: ${esc(String(x.store_impact).replace(/_/g,' '))}${x.recurrence&&x.recurrence.count?` &middot; recurrence: ${x.recurrence.count}`:''}
+      ${x.ai_summary?`<h4>AI summary for the L2 engineer</h4>${esc(x.ai_summary)}`:''}
+      <h4>Error codes</h4>${(x.error_codes||[]).length?esc(x.error_codes.join(', ')):'none quoted'}
+      <h4>Steps already tried</h4>${(x.steps_already_tried||[]).length?'<ul style="margin:0 0 0 18px;padding:0">'+x.steps_already_tried.map(s=>`<li>${esc(String(s).replace(/_/g,' '))}</li>`).join('')+'</ul>':'none documented'}
+      <h4>Why escalated</h4>${esc((x.why_escalated||[]).join('; '))}
+      <h4>Mandatory information check</h4>${Object.entries(chk).map(([k,v])=>`<span class="chip ${String(v).includes('NOT')?'warn':'ok'}">${esc(k)}: ${esc(v)}</span>`).join(' ')}
+      <h4>Runbook consulted</h4>${esc(x.runbook_used||'none')}
+      <h4>Customer contact</h4>${esc((x.customer_contact||{}).name||'')} ${esc((x.customer_contact||{}).phone||'')}${x.manager_route?' &middot; <b>manager follow-up requested</b>':''}
+      <div class="small muted" style="margin-top:8px">${esc(x.sla_note||'')}</div></div></div>`;
+  }
+  const qs = res.questions.length ? `<div class="small muted" style="margin-top:6px">Questions asked: ${res.questions.length}</div>` : '';
+  const w = res.llm && res.llm.writer;
+  const wtag = w ? (w.message_used ? ' <span class="badge b-purple">AI-written, passed message checks</span>' : (w.message_rejected ? ' <span class="badge b-amber">AI draft rejected: template used</span>' : '')) : '';
+  const body = `<h4 style="margin:0 0 6px">Reply to the requester${wtag}</h4><div class="bubble">${esc(res.requester_message)}</div>${qs}${h}
+    <details style="margin-top:14px"><summary class="small"><b>Internal ticket note</b> (what L1/L2 staff see)</summary><div class="body"><pre>${esc(res.ticket_note)}</pre></div></details>`;
+  return card(8,'Messages','what the store manager and the next human receive',body);
+}
+
+function renderTrace(res){
+  const body = `<div class="trace">${res.trace.map(e=>`<div class="e"><b>${esc(e.stage)}</b> <span class="muted small">${esc(e.agent)} &middot; ${e.ms} ms</span><div class="small">${esc(e.detail)}</div></div>`).join('')}</div>`;
+  return card(9,'Trace','observability: what ran, on what, how long',body,'tech');
+}
+
+function renderStrip(pkg){
+  const r = pkg.result, d = r.decision, e = r.enrichment, t = pkg.ticket;
+  const lab = pkg.label ? `<div class="stat"><span class="l">Dataset label</span><span title="${esc(pkg.label.note)}"><span class="badge ${pkg.label.match?'b-green':'b-amber'}">${esc(pkg.label.gold.replace('_',' '))} ${pkg.label.match?'&check; match':'differs'}</span></span></div>` : '';
+  return `<div class="strip step" data-step="4">
+    <div class="stat"><span class="l">Route</span><span class="big">${rb(d.route)}</span></div>
+    <div class="stat"><span class="l">Confidence</span><div class="row" style="gap:6px"><b>${d.confidence}</b><div class="meter"><i style="width:${pct(d.confidence)}%"></i></div></div></div>
+    <div class="stat"><span class="l">Priority</span><b>${esc(t.priority)}${e.suggested_priority!==t.priority?' &rarr; '+esc(e.suggested_priority):''}</b></div>
+    <div class="stat"><span class="l">Human review</span>${d.human_review?'<span class="badge b-amber">required</span>':'<span class="badge b-green">not needed</span>'}</div>
+    <div class="stat"><span class="l">Grounding</span>${r.guardrails.dropped_steps.length?'<span class="badge b-red">steps blocked</span>':'<span class="badge b-green">all cited</span>'}</div>
+    ${lab}<div class="stat"><span class="l">AI assist</span>${r.llm?`<span><span class="badge b-purple">on</span> ${r.llm.usage.calls} calls, ${r.llm.usage.prompt_tokens+r.llm.usage.completion_tokens} tokens</span>`:'<span class="badge b-gray">off - rules only</span>'}</div>
+    <div class="spacer"></div><div class="stat"><span class="l">Agent time</span><span>${(r.elapsed_ms/1000).toFixed(r.elapsed_ms<1000?2:1)} s &middot; ${esc(pkg.mode)}</span></div></div>`;
+}
+
+function renderResult(pkg){
+  const r = pkg.result;
+  return renderStrip(pkg) + renderTicketCard(pkg.ticket) + renderTriage(r, pkg.ticket) + renderRetrieval(r) + renderDecision(r) +
+         renderSteps(r) + renderGuardrails(r) + renderActions(r, pkg.ticket.ticket_id) + renderMessages(r) + renderTrace(r);
+}
+
+function renderEval(state){
+  const m = state.metrics; if(!m) return '<div class="muted">No evaluation has been run yet. Click "Run evaluation" (takes a minute or two).</div>';
+  const h = m.heldout, ms = h.multi_seed || {};
+  const P = x => (x==null?'-':(x*100).toFixed(1)+'%');
+  const cards = [
+    ['Routing accuracy', P(ms.routing_accuracy), 'baseline rule: '+P(ms.baseline_accuracy)],
+    ['Escalation recall', P(ms.l2_recall), 'needed L2 and got it'],
+    ['False escalation', P(ms.false_escalation_rate), 'L1-able sent to L2'],
+    ['Right runbook found', P(ms.primary_runbook_hit), 'primary runbook in labelled docs'],
+    ['Relevant docs retrieved', P(ms.doc_recall_at5), 'of labelled relevant docs']
+  ].map(c=>`<div class="metric"><div class="v">${c[1]}</div><div><b>${c[0]}</b></div><div class="l">${esc(c[2])}</div></div>`).join('');
+  const ch = m.chaos || {}; let tot=0, ok=0;
+  const rows = Object.keys(ch).sort().map(k=>{ const v=ch[k]; const p=v.filter(x=>x[1]).length; tot+=v.length; ok+=p;
+    return `<tr><td>${humanize(k)}</td><td><span class="badge ${p===v.length?'b-green':'b-amber'}">${p}/${v.length}</span></td><td class="small muted">${v.filter(x=>!x[1]).map(x=>esc(x[0])+' (routed '+esc(x[2])+')').join(', ')}</td></tr>`; }).join('');
+  return `<div>${cards}</div><div class="small muted" style="margin-bottom:12px">Held-out: the learned parts are re-fitted on 70% of the 220 labelled tickets and the whole pipeline is scored on the remaining 30%, over 5 random splits. The labels are noisy, so treat these as indicative.</div>
+   <h4 style="margin:6px 0">Messy-ticket suite <span class="badge b-gray">${ok}/${tot}</span></h4><div class="small muted" style="margin-bottom:6px">The dataset has no labels for these 36 tickets; the expected behaviours are my own checks, not ground truth.</div>
+   <table><tr><th>Type</th><th>Passed</th><th>Missed</th></tr>${rows}</table>`;
+}
+
+
+function renderAB(st){
+  const bar = st.running ? `<div class="banner blue small">Running: ${st.done}/${st.total} tickets ${st.current?'('+esc(st.current)+')':''}. Free tiers are rate-limited, so expect roughly 5-10 seconds per ticket.</div>` : '';
+  const err = st.error ? `<pre class="banner red">${esc(st.error)}</pre>` : '';
+  const m = st.metrics; if(!m) return bar + err + '<div class="muted small">No comparison run yet.</div>';
+  const P = (a,b)=>b?Math.round(100*a/b)+'%':'-';
+  const rows = Object.keys(m.by_type).filter(k=>k!=='normal').map(k=>{ const v=m.by_type[k]; return `<tr><td>${humanize(k)}</td><td>${v.off}/${v.n}</td><td>${v.on}/${v.n}</td><td>${v.on>v.off?'<span class="badge b-green">better</span>':v.on<v.off?'<span class="badge b-red">worse</span>':'<span class="badge b-gray">same</span>'}</td></tr>`; }).join('');
+  const u = m.usage;
+  return bar + err + `<div class="small muted" style="margin-bottom:8px">Model <b>${esc(m.model)}</b> - ${m.tickets} tickets - ${m.seconds} s. Each ticket is run twice by the same system: rules only, then rules + AI.</div>
+   <div><div class="metric"><div class="v">${m.messy.pass_off}/${m.messy.n} &rarr; ${m.messy.pass_on}/${m.messy.n}</div><div><b>Messy-ticket checks</b></div><div class="l">rules only &rarr; rules + AI</div></div>
+   <div class="metric"><div class="v">${P(m.review_rate_off,m.tickets)} &rarr; ${P(m.review_rate_on,m.tickets)}</div><div><b>Human review rate</b></div><div class="l">share of tickets that need a person</div></div>
+   <div class="metric"><div class="v">${m.second_opinion_agree}/${m.second_opinion_n}</div><div><b>Second opinion agrees</b></div><div class="l">AI route suggestion vs policy</div></div></div>
+   <table style="margin-top:6px"><tr><th>Ticket type</th><th>Rules only</th><th>Rules + AI</th><th></th></tr>${rows}</table>
+   <div class="small" style="margin-top:10px">Improved by AI: <b>${esc((m.improved||[]).join(', ')||'none')}</b><br>Got worse with AI: <b>${esc((m.regressed||[]).join(', ')||'none')}</b><br>
+   Evidence changed by the reader on ${m.evidence_changed} tickets; route changed on ${(m.route_changed||[]).length}. AI-written steps: ${m.steps_written} written, ${m.steps_dropped} blocked by the grounding check. Fallbacks to rules: reader ${m.reader_failures}, writer ${m.writer_failures}.<br>
+   Cost side: ${u.calls} calls, ${u.prompt_tokens} + ${u.completion_tokens} tokens, ${Math.round(u.latency_ms/Math.max(1,u.calls))} ms average per call, ${u.retries} rate-limit retries.</div>
+   <div class="small muted" style="margin-top:8px">The messy-ticket expectations are my own behavioural checks, not dataset ground truth. Small samples are noisy: treat differences of one or two tickets as inconclusive.</div>`;
+}
+
+function renderAudit(a){
+  if(!a.entries.length) return '<div class="small muted">Nothing yet. Run a ticket first.</div>';
+  return `<table><tr><th>Time</th><th>Ticket</th><th>Event</th><th>Detail</th><th>Hash</th></tr>` + a.entries.map(e=>`<tr><td class="small">${esc(e.ts)}</td><td>${esc(e.ticket_id)}</td><td><b>${humanize(e.event)}</b></td>
+  <td class="small muted">${esc(JSON.stringify(e.payload).slice(0,140))}</td><td class="small muted"><code>${esc(e.hash)}</code></td></tr>`).join('') + '</table>';
+}
+// ==== PURE:END
+
+// ---------------- DOM wiring ----------------
+if (typeof document !== 'undefined' && document.getElementById) {
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+async function api(path, body){
+  const r = await fetch(path, body ? {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)} : {});
+  const j = await r.json().catch(()=>({error:'bad response'}));
+  if(!r.ok) throw new Error(j.error || r.statusText);
+  return j;
+}
+const S = {samples:[], sel:null, pkg:null, reveal:false, shown:9, tech:true, useAI:true, lastBody:null};
+
+// tabs
+$('#nav').addEventListener('click', e=>{ const b=e.target.closest('button'); if(!b) return;
+  $$('#nav button').forEach(x=>x.classList.toggle('on',x===b));
+  ['run','dash'].forEach(t=>$('#tab-'+t).classList.toggle('hide',t!==b.dataset.tab));
+  if(b.dataset.tab==='dash'){ loadEval(); loadAudit(); loadAB(); } });
+$('#srcTabs').addEventListener('click', e=>{ const b=e.target.closest('button'); if(!b) return;
+  $$('#srcTabs button').forEach(x=>x.classList.toggle('on',x===b));
+  $('#src-samples').classList.toggle('hide',b.dataset.src!=='samples'); $('#src-new').classList.toggle('hide',b.dataset.src!=='new'); });
+
+// header info + AI settings
+S.ai = {available:false, provider:'offline', model:'', providers:[]};
+function paintAI(i){
+  S.ai = {available:i.llm, provider:i.provider, model:i.mode, providers:i.providers||S.ai.providers, err:i.llm_error};
+  $('#aiLabel').textContent = i.llm ? 'AI on: '+i.mode : 'AI: off (rules only)';
+  $('#aiDot').className = 'dot' + (i.llm ? ' on' : '');
+  $('#hInfo').textContent = `KB ${i.kb_hash} - ${i.docs} docs, ${i.chunks} chunks - ${i.samples} sample tickets`;
+}
+async function refreshInfo(){ try{ paintAI(await api('/api/info')); }catch(_){} }
+refreshInfo();
+const HELP = {
+  groq:'Free key (no card): console.groq.com/keys. Fast. Free limits are per minute and per day, so batches can be slow.',
+  gemini:'Free key: aistudio.google.com/apikey. Flash-Lite models have the largest free daily allowance. Free-tier data may be used by Google to improve products.'
+};
+function fillProviders(){
+  const pv = S.ai.providers; $('#aiProv').innerHTML = pv.map(p=>`<option value="${esc(p.id)}">${esc(p.label)}</option>`).join('');
+  showHelp();
+}
+function showHelp(){
+  const p = S.ai.providers.find(x=>x.id===$('#aiProv').value) || {};
+  $('#aiHelp').innerHTML = esc(HELP[p.id]||'') + (p.env_key ? ` <b style="color:var(--green)">A key was found in ${esc(p.env_var)}: leave the box empty to use it.</b>` : '');
+  $('#aiModelRow').classList.add('hide'); $('#aiMsg').textContent='';
+}
+$('#aiBtn').onclick = async () => { await refreshInfo(); fillProviders(); $('#aiModal').classList.remove('hide'); };
+$('#aiClose').onclick = () => $('#aiModal').classList.add('hide');
+$('#aiModal').addEventListener('click', e => { if(e.target.id==='aiModal') $('#aiModal').classList.add('hide'); });
+$('#aiProv').onchange = showHelp;
+$('#aiConnect').onclick = async () => {
+  const b=$('#aiConnect'); b.disabled=true; $('#aiMsg').style.color=''; $('#aiMsg').textContent='Connecting...';
+  try{ const r = await api('/api/llm/connect', {provider:$('#aiProv').value, api_key:$('#aiKey').value});
+    $('#aiModel').innerHTML = r.models.map(m=>`<option ${m===r.suggested?'selected':''}>${esc(m)}</option>`).join('');
+    $('#aiModelRow').classList.remove('hide'); $('#aiMsg').style.color='var(--green)'; $('#aiMsg').textContent = r.models.length+' models available. Suggested one is pre-selected.'; }
+  catch(err){ $('#aiMsg').style.color='var(--red)'; $('#aiMsg').textContent = err.message; }
+  finally{ b.disabled=false; }
+};
+$('#aiUse').onclick = async () => {
+  const b=$('#aiUse'); b.disabled=true; $('#aiMsg').style.color=''; $('#aiMsg').textContent='Testing the model...';
+  try{ const r = await api('/api/llm/use', {provider:$('#aiProv').value, model:$('#aiModel').value, api_key:$('#aiKey').value});
+    $('#aiKey').value=''; $('#aiMsg').style.color='var(--green)'; $('#aiMsg').textContent='Connected ('+r.test_ms+' ms). AI is on.'; await refreshInfo(); S.useAI = true; setTimeout(()=>$('#aiModal').classList.add('hide'), 900); }
+  catch(err){ $('#aiMsg').style.color='var(--red)'; $('#aiMsg').textContent = err.message; }
+  finally{ b.disabled=false; }
+};
+$('#aiOff').onclick = async () => { await api('/api/llm/off', {}); await refreshInfo(); $('#aiMsg').style.color=''; $('#aiMsg').textContent='AI is off; the agent runs on rules only.'; };
+
+// sample list
+function fillGroups(){
+  const groups = [['all','All tickets'],['fresh','Fresh examples (not in dataset)'],['clean','Clean tickets']];
+  const chaos = [...new Set(S.samples.map(s=>s.group).filter(g=>!['fresh','clean'].includes(g)))].sort();
+  $('#fGroup').innerHTML = groups.map(g=>`<option value="${g[0]}">${g[1]}</option>`).join('') + chaos.map(c=>`<option value="${c}">Messy: ${esc(c.replace('_',' '))}</option>`).join('');
+}
+function renderList(){
+  const g = $('#fGroup').value, q = $('#fSearch').value.toLowerCase();
+  const items = S.samples.filter(s=>(g==='all'||s.group===g) && (!q || (s.id+s.subject+s.category+s.subcategory).toLowerCase().includes(q))).slice(0,200);
+  $('#sampleList').innerHTML = items.map(s=>`<div class="item ${S.sel===s.id?'sel':''}" data-id="${esc(s.id)}"><div class="t">${esc(s.ticket_id)} &middot; ${esc(s.subject||'(no subject)')}</div>
+    <div class="m"><span class="badge ${s.group==='fresh'?'b-purple':s.group==='clean'?'b-gray':'b-amber'}">${esc(s.kind)}</span><span>${esc(s.category)} / ${esc(s.subcategory||'-')}</span><span>${esc(s.priority)}</span></div></div>`).join('') || '<div class="item muted">No tickets match.</div>';
+}
+api('/api/samples').then(s=>{ S.samples=s; fillGroups(); renderList(); });
+$('#fGroup').onchange = renderList; $('#fSearch').oninput = renderList;
+$('#sampleList').addEventListener('click', async e=>{ const it=e.target.closest('.item'); if(!it||!it.dataset.id) return;
+  S.sel = it.dataset.id; renderList();
+  const t = await api('/api/ticket/'+encodeURIComponent(S.sel));
+  const p = $('#preview'); p.classList.remove('hide');
+  p.innerHTML = `<div class="small muted">Selected ticket</div><div style="font-weight:650;margin:4px 0">${esc(t.ticket_id)} - ${esc(t.subject)}</div><div class="small muted" style="margin-bottom:10px">${esc(t.store_name||t.store_id||'')} &middot; ${esc(t.category)} / ${esc(t.subcategory)} &middot; ${esc(t.priority)}</div><button class="primary" id="runSel">Run agent &#9654;</button>`;
+  $('#runSel').onclick = () => run({sample:S.sel}, $('#runSel')); });
+
+$('#newFile').onchange = e => { const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ $('#newText').value=r.result; }; r.readAsText(f); };
+$('#runNew').onclick = () => {
+  const txt = $('#newText').value.trim(); if(!txt){ alert('Paste a ticket first.'); return; }
+  let body; try { const j = JSON.parse(txt); body = Array.isArray(j) ? null : {ticket:j}; if(!body){ alert('Paste a single ticket, not a list.'); return; } }
+  catch(_) { body = {text:txt, store:$('#newStore').value.trim()}; }
+  run(body, $('#runNew'));
+};
+
+async function run(body, btn){
+  const old = btn.innerHTML; btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Running';
+  if(S.ai && S.ai.available) body.use_llm = S.useAI; S.lastBody = body;
+  try { const pkg = await api('/api/process', body); show(pkg); }
+  catch(err){ $('#out').innerHTML = `<div class="banner red">Could not run the agent: ${esc(err.message)}</div>`; }
+  finally { btn.disabled = false; btn.innerHTML = old; }
+}
+
+// results
+function show(pkg, keepReveal){
+  S.pkg = pkg; if(!keepReveal) S.shown = S.reveal ? 1 : 9;
+  const bar = `<div class="toolbar"><label class="switch"><input type="checkbox" id="swTech" ${S.tech?'checked':''}> Technical detail</label>
+    <label class="switch"><input type="checkbox" id="swReveal" ${S.reveal?'checked':''}> Present step by step</label>
+    ${S.ai.available?`<label class="switch" title="Re-runs this ticket with or without the language model"><input type="checkbox" id="swAI" ${S.useAI?'checked':''}> Use AI</label>`:''}<div class="spacer"></div>
+    <span class="muted small">Audit chain ${pkg.audit_intact?'intact':'BROKEN'}</span></div>`;
+  $('#out').innerHTML = bar + `<div id="cards">${renderResult(pkg)}</div><div class="bottombar" id="nextbar"></div>`;
+  document.body.classList.toggle('biz', !S.tech);
+  $('#swTech').onchange = e => { S.tech = e.target.checked; document.body.classList.toggle('biz', !S.tech); };
+  $('#swReveal').onchange = e => { S.reveal = e.target.checked; S.shown = S.reveal ? 1 : 9; applyReveal(); };
+  if($('#swAI')) $('#swAI').onchange = e => { S.useAI = e.target.checked; if(S.lastBody){ const b = Object.assign({}, S.lastBody); run(b, document.createElement('button')); } };
+  $('#cards').addEventListener('click', onCardsClick);
+  applyReveal(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function applyReveal(){
+  $$('#cards .step').forEach(el => el.classList.toggle('hide', Number(el.dataset.step) > S.shown));
+  const bar = $('#nextbar'); if(!bar) return;
+  if(S.reveal && S.shown < 9){ bar.innerHTML = `<button class="primary" id="nextBtn">Next: ${esc(STEPS[S.shown])} &#9654;</button><button class="ghost" id="allBtn">Show all</button>`;
+    $('#nextBtn').onclick = () => { S.shown++; applyReveal(); const els=$$('#cards .step:not(.hide)'); els[els.length-1].scrollIntoView({behavior:'smooth',block:'center'}); };
+    $('#allBtn').onclick = () => { S.shown = 9; applyReveal(); }; }
+  else bar.innerHTML = '';
+}
+async function onCardsClick(e){
+  const b = e.target.closest('[data-approve]'); if(!b) return;
+  b.disabled = true; b.textContent = '...';
+  try { const r = await api('/api/approve', {ticket_id:S.pkg.ticket.ticket_id, index:Number(b.dataset.approve)});
+    S.pkg.result.actions[Number(b.dataset.approve)] = r.action; S.pkg.audit_intact = r.audit_intact; const keep = S.shown; show(S.pkg, true); S.shown = keep; applyReveal(); }
+  catch(err){ alert(err.message); }
+}
+
+// dashboard
+async function loadEval(){ const s = await api('/api/eval'); $('#evalOut').innerHTML = renderEval(s);
+  $('#evalMsg').textContent = s.running ? 'Running... this takes a minute or two' : (s.error ? 'Failed - see below' : ''); $('#runEval').disabled = s.running;
+  if(s.error) $('#evalOut').innerHTML += `<pre class="banner red">${esc(s.error)}</pre>`; return s; }
+async function loadAudit(){ const a = await api('/api/audit'); $('#auditOut').innerHTML = renderAudit(a);
+  $('#auditBadge').innerHTML = `<span class="badge ${a.intact?'b-green':'b-red'}">${a.intact?'chain intact':'CHAIN BROKEN'}</span>`; }
+async function loadAB(){ const s = await api('/api/ab'); $('#abOut').innerHTML = renderAB(s); $('#runAB').disabled = s.running; $('#abMsg').textContent = s.running ? 'Running...' : ''; return s; }
+$('#runAB').onclick = async () => {
+  try{ await api('/api/run_ab', {max:Number($('#abN').value)}); }catch(err){ $('#abMsg').textContent = err.message; return; }
+  $('#runAB').disabled = true; const t = setInterval(async () => { const s = await loadAB(); if(!s.running) clearInterval(t); }, 2500); };
+$('#refreshAudit').onclick = loadAudit;
+$('#runEval').onclick = async () => { await api('/api/run_eval', {}); $('#runEval').disabled = true; $('#evalMsg').textContent = 'Running... this takes a minute or two';
+  const t = setInterval(async () => { const s = await loadEval(); if(!s.running) clearInterval(t); }, 3000); };
+}
+</script>
+</body>
+</html>

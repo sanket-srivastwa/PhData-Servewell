@@ -1,0 +1,2 @@
+POS terminal will not start after the power cut
+Hi team, at SW-0007 the main billing machine POS-0007-T1 will not boot since the power came back around 9am. It just shows a black screen with a blinking cursor. I switched it off and on twice. Please help, we cannot bill anyone on this counter.
